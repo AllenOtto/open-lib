@@ -1,0 +1,12 @@
+body {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-image: url("../img/olib.jpg");
+    background-blend-mode: overlay;
+}
+
+.container {
+    margin: 0 auto;
+    text-align: center;
+}
