@@ -7,4 +7,3 @@ async function getFetch() {
     console.log(jsonData.thumbnail_url)
     document.querySelector('img').src = jsonData
 }
-
