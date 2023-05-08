@@ -1,14 +1,25 @@
 document.querySelector('button').addEventListener('click', getFetch)
-document.querySelector('h2').innerHTML += "<span>"+ localStorage.bookTitle +"</span><br>"
+if(!localStorage.getItem('books')){
+    // Do nothing
+} else {
+    document.querySelector('.book-list').textContent = localStorage.getItem('books')
+}
 
 async function getFetch() {
     const isbn = document.querySelector('input').value
-    const response = await fetch(`https://openlibrary.org/isbn/${isbn}.json`)
+    const url = `https://openlibrary.org/isbn/${isbn}.json`
+    const response = await fetch(url)
     const jsonData = await response.json()
     console.log(jsonData)
-    localStorage.setItem("bookTitle", jsonData.title)
-    document.querySelector('h2').innerHTML = "Book Title: " + localStorage.bookTitle
-    document.querySelector('h2').classList.add('focus')
+    if(!localStorage.getItem('books')) {
+        localStorage.setItem('books', jsonData.title)
+    } else {
+        let books = localStorage.getItem('books') + "; " + jsonData.title
+        localStorage.setItem('books', books)
+    }
+
+    document.querySelector('.book-list').textContent = localStorage.getItem('books')
+    document.querySelector('.book-list').classList.add('focus')
 }
 
 // Examples of popular book isbn numbers
