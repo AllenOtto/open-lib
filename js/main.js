@@ -1,12 +1,13 @@
 document.querySelector('button').addEventListener('click', getFetch)
 if(!localStorage.getItem('books')){
-    // Do nothing
+    // If there's not a book in local storage, do nothing
 } else {
+    // Display book(s) in storage
     document.querySelector('.book-list').textContent = localStorage.getItem('books')
 }
 
 async function getFetch() {
-    const isbn = document.querySelector('input').value
+    const isbn = document.querySelector('input').value // Get user input
     const url = `https://openlibrary.org/isbn/${isbn}.json`
     const response = await fetch(url)
     const jsonData = await response.json()
